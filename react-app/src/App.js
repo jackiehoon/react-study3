@@ -1,16 +1,7 @@
-import Jsx from "./components/Jsx";
-import MyComponent from "./components/MyComponent";
+import Say from "./components/Say";
 
 function App() {
-  const name = "리액트123";
-  return (
-    <MyComponent name={name} name2="React2">
-      안녕하세요
-      <div>DIV 입니다.</div>
-    </MyComponent>
-  );
+  return <Say />;
 }
-
-// {name: "react", name2: "REact2"}
 
 export default App;
