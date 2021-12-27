@@ -1,7 +1,7 @@
-import EventPractice from "./components/EventPractice";
+import Info from "./components/Info";
 
 function App() {
-  return <EventPractice />;
+  return <Info />;
 }
 
 export default App;
