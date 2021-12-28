@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const IterationSample = () => {
   const [value, setValue] = useState("");
@@ -8,7 +8,8 @@ const IterationSample = () => {
     { id: 3, text: "눈" },
     { id: 4, text: "바람" },
   ]);
-  const [nextId, setNextId] = useState(5);
+  // const [nextId, setNextId] = useState(5);
+  const nextId = useRef(5);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -17,9 +18,9 @@ const IterationSample = () => {
   const handleClick = () => {
     if (value.length === 0) return alert("값을 입력하세요");
 
-    setNames([...names, { id: nextId, text: value }]);
+    setNames([...names, { id: nextId.current, text: value }]);
     setValue("");
-    setNextId(nextId + 1);
+    nextId.current = nextId.current + 1;
   };
 
   const handleDelete = (id) => {
