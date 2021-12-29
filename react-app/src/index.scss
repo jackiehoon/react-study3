@@ -15,3 +15,34 @@ code {
 .react {
   font-size: 48px;
 }
+.react p {
+  background: black;
+}
+.react p span {
+  background: red;
+}
+
+.react {
+  p {
+    background: black;
+    span {
+      background: red;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: unset;
+}

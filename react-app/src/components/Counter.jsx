@@ -23,7 +23,13 @@ const Counter = () => {
       <h1>{number2}</h1>
       <button
         onClick={() => {
+          setNumber2((prev) => prev + 1);
+          setNumber2((prev) => prev + 1);
+          setNumber2((prev) => prev + 1);
           setNumber2(number2 + 1);
+          setNumber2((prev) => prev + 1);
+
+          console.log(number2);
         }}
       >
         +1

@@ -1,13 +1,13 @@
-import { useState } from "react";
-import Info from "./components/Info";
-import Average from "./components/Average";
+import StyledComponent from "./components/StyledComponent";
+import styles from "./App.module.css";
 
 function App() {
   // const [showInfo, setShowInfo] = useState(false);
 
   return (
     <>
-      <Average />
+      <div className={styles.react}>안녕하십니까</div>
+      <StyledComponent />
       {/* <button
         onClick={() => {
           setShowInfo(!showInfo);
