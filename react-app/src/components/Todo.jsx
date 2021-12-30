@@ -1,36 +1,39 @@
 import styled from "styled-components";
+import { useState, useRef } from "react";
 const Todo = () => {
+  const [text, setText] = useState("");
+  const [todoList, setTodoList] = useState([]);
+  const nextId = useRef(1);
+
+  const handleAddTodo = () => {
+    if (text === "") return;
+    // text값을 todoList에 추가.
+    const newList = [...todoList, { id: nextId.current, text: text }];
+    setTodoList(newList);
+    setText("");
+    nextId.current++;
+  };
+  const handleDelete = (id) => {
+    const newTodoList = todoList.filter((todo) => todo.id !== id);
+    setTodoList(newTodoList);
+  };
   return (
     <Container>
       <Title>일정관리</Title>
       <InputWrapper>
-        <InputText />
-        <BtnSubmit>추가</BtnSubmit>
+        <InputText onChange={(e) => setText(e.target.value)} value={text} />
+        <BtnSubmit onClick={handleAddTodo}>추가</BtnSubmit>
       </InputWrapper>
       <List>
-        <Item>
-          <label>
-            <Checkbox type="checkbox" />
-            <Content>할일1</Content>
-          </label>
-          <BtnDelete>삭제</BtnDelete>
-        </Item>
-
-        <Item>
-          <label>
-            <Checkbox type="checkbox" />
-            <Content>할일1</Content>
-          </label>
-          <BtnDelete>삭제</BtnDelete>
-        </Item>
-
-        <Item>
-          <label>
-            <Checkbox type="checkbox" />
-            <Content>할일1</Content>
-          </label>
-          <BtnDelete>삭제</BtnDelete>
-        </Item>
+        {todoList.map((todo) => (
+          <Item key={todo.id}>
+            <label>
+              <Checkbox type="checkbox" />
+              <Content>{todo.text}</Content>
+            </label>
+            <BtnDelete onClick={() => handleDelete(todo.id)}>삭제</BtnDelete>
+          </Item>
+        ))}
       </List>
     </Container>
   );
