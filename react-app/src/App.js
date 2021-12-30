@@ -1,4 +1,4 @@
-import StyledComponent from "./components/StyledComponent";
+import Todo from "./components/Todo";
 import styles from "./App.module.css";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div className={styles.react}>안녕하십니까</div>
-      <StyledComponent />
+      <Todo />
       {/* <button
         onClick={() => {
           setShowInfo(!showInfo);

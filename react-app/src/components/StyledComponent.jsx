@@ -1,5 +1,13 @@
 import styled, { css } from "styled-components";
 
+const Btn = styled.button`
+  background: #fff;
+  border: none;
+  border-radius: 4px;
+  margin: 5px;
+  cursor: pointer;
+`;
+
 const Box = styled.div`
   background: ${(props) => props.color || "blue"};
   padding: 1rem;
@@ -12,6 +20,9 @@ const Box = styled.div`
   }
   @media (max-width: 768px) {
     width: 100%;
+  }
+  ${Btn} {
+    background: black;
   }
 `;
 
@@ -31,6 +42,13 @@ const Button = styled.button`
     background: rgba(255, 255, 255, 0.9);
   }
 
+  p {
+    background: black;
+    span {
+      background: red;
+    }
+  }
+
   ${({ inverted }) =>
     inverted &&
     css`
@@ -48,13 +66,6 @@ const Button = styled.button`
   }
 `;
 
-const Btn = styled.button`
-  background: #fff;
-  border: none;
-  border-radius: 4px;
-  margin: 5px;
-  cursor: pointer;
-`;
 const BtnBlue = styled(Btn)`
   background: blue;
   color: #fff;
@@ -64,14 +75,18 @@ const BtnRed = styled(Btn)`
   color: #fff;
 `;
 
+const color = "blue";
 const StyledComponent = () => (
-  <Box color="red">
-    <Btn>기본 버튼</Btn>
-    <BtnBlue>파란 버튼</BtnBlue>
-    <BtnRed>빨간 버튼</BtnRed>
-    <Button>안녕하세요</Button>
-    <Button inverted>테두리만</Button>
-  </Box>
+  <>
+    <Box color={color}>
+      <Btn>기본 버튼</Btn>
+      <BtnBlue>파란 버튼</BtnBlue>
+      <BtnRed>빨간 버튼</BtnRed>
+      <Button>안녕하세요</Button>
+      <Button inverted>테두리만</Button>
+    </Box>
+    <Btn>하얀색</Btn>
+  </>
 );
 
 export default StyledComponent;
