@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useState, useRef } from "react";
 const Todo = () => {
   const [text, setText] = useState("");
@@ -115,6 +115,13 @@ const Checkbox = styled.input``;
 const Content = styled.div`
   color: ${({ isDone }) => isDone && "#ddd"};
   text-decoration: ${({ isDone }) => isDone && "line-through"};
+
+  ${({ isDone }) =>
+    isDone &&
+    css`
+      color: #ddd;
+      text-decoration: line-through;
+    `}
 `;
 const BtnDelete = styled.button``;
 export default Todo;

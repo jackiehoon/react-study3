@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   function increase(number, callback) {
+      //     setTimeout(() => {
+      //       const result = number + 1;
+      //       callback(result);
+      //     }, 1000);
+      //   }
+
+      //   let number = 0;
+      //   increase(number, (result) => {
+      //     number = result;
+      //     console.log(number);
+      //     increase(number, (result) => {
+      //       number = result;
+      //       console.log(number);
+      //       increase(number, (result) => {
+      //         number = result;
+      //         console.log(number);
+      //       });
+      //     });
+      //   });
+
+      const aaa = () => {
+        console.log(1);
+        setTimeout(() => {
+          console.log(2);
+        }, 0);
+        console.log(3);
+      };
+      aaa();
+
+      const increase = (number) => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            const result = number + 10;
+            if (result > 50) {
+              const e = new Error("Number Too Big");
+              return reject(e);
+            }
+            resolve(result);
+          }, 1000);
+        });
+      };
+
+      //   increase(0)
+      //     .then((number) => {
+      //       console.log(number);
+      //       return increase(number);
+      //     })
+      //     .then((number) => {
+      //       console.log(number);
+      //       return increase(number);
+      //     })
+      //     .then((number) => {
+      //       console.log(number);
+      //       return increase(number);
+      //     })
+      //     .then((number) => {
+      //       console.log(number);
+      //       return increase(number);
+      //     })
+      //     .then((number) => {
+      //       console.log(number);
+      //       return increase(number);
+      //     })
+      //     .then((number) => {
+      //       console.log(number);
+      //       return increase(number);
+      //     })
+      //     .then((number) => {
+      //       console.log(number);
+      //       return increase(number);
+      //     })
+      //     .catch((e) => {
+      //       console.log(e);
+      //     });
+
+      async function runTasks() {
+        try {
+          let result = await increase(0);
+          console.log(result);
+          result = await increase(result);
+          console.log(result);
+          result = await increase(result);
+          console.log(result);
+          result = await increase(result);
+          console.log(result);
+          result = await increase(result);
+          console.log(result);
+          result = await increase(result);
+          console.log(result);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+      runTasks();
+    </script>
+  </body>
+</html>

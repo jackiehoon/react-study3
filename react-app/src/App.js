@@ -1,4 +1,4 @@
-import Todo from "./components/Todo";
+import Async from "./components/Async";
 import styles from "./App.module.css";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div className={styles.react}>안녕하십니까</div>
-      <Todo />
+      <Async />
       {/* <button
         onClick={() => {
           setShowInfo(!showInfo);
