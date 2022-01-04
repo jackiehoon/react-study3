@@ -1,4 +1,4 @@
-import Async from "./components/Async";
+import Bootstrap from "./components/bootstrap/Bootstrap";
 import styles from "./App.module.css";
 
 function App() {
@@ -6,8 +6,8 @@ function App() {
 
   return (
     <>
-      <div className={styles.react}>안녕하십니까</div>
-      <Async />
+      {/* <div className={styles.react}>안녕하십니까</div> */}
+      <Bootstrap />
       {/* <button
         onClick={() => {
           setShowInfo(!showInfo);

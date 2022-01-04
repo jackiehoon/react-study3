@@ -8,26 +8,26 @@
   </head>
   <body>
     <script>
-      //   function increase(number, callback) {
-      //     setTimeout(() => {
-      //       const result = number + 1;
-      //       callback(result);
-      //     }, 1000);
-      //   }
+      function increase(number, callback) {
+        setTimeout(() => {
+          const result = number + 1;
+          callback(result);
+        }, 1000);
+      }
 
-      //   let number = 0;
-      //   increase(number, (result) => {
-      //     number = result;
-      //     console.log(number);
-      //     increase(number, (result) => {
-      //       number = result;
-      //       console.log(number);
-      //       increase(number, (result) => {
-      //         number = result;
-      //         console.log(number);
-      //       });
-      //     });
-      //   });
+      let number = 0;
+      increase(number, (result) => {
+        number = result;
+        console.log(number);
+        increase(number, (result) => {
+          number = result;
+          console.log(number);
+          increase(number, (result) => {
+            number = result;
+            console.log(number);
+          });
+        });
+      });
 
       const aaa = () => {
         console.log(1);
@@ -51,38 +51,38 @@
         });
       };
 
-      //   increase(0)
-      //     .then((number) => {
-      //       console.log(number);
-      //       return increase(number);
-      //     })
-      //     .then((number) => {
-      //       console.log(number);
-      //       return increase(number);
-      //     })
-      //     .then((number) => {
-      //       console.log(number);
-      //       return increase(number);
-      //     })
-      //     .then((number) => {
-      //       console.log(number);
-      //       return increase(number);
-      //     })
-      //     .then((number) => {
-      //       console.log(number);
-      //       return increase(number);
-      //     })
-      //     .then((number) => {
-      //       console.log(number);
-      //       return increase(number);
-      //     })
-      //     .then((number) => {
-      //       console.log(number);
-      //       return increase(number);
-      //     })
-      //     .catch((e) => {
-      //       console.log(e);
-      //     });
+      increase(0)
+        .then((number) => {
+          console.log(number);
+          return increase(number);
+        })
+        .then((number) => {
+          console.log(number);
+          return increase(number);
+        })
+        .then((number) => {
+          console.log(number);
+          return increase(number);
+        })
+        .then((number) => {
+          console.log(number);
+          return increase(number);
+        })
+        .then((number) => {
+          console.log(number);
+          return increase(number);
+        })
+        .then((number) => {
+          console.log(number);
+          return increase(number);
+        })
+        .then((number) => {
+          console.log(number);
+          return increase(number);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
 
       async function runTasks() {
         try {
