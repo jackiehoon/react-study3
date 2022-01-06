@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 const Carousel = ({ data }) => {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleClick = (n) => {
     if (n === -1 && activeIndex === 0) {
@@ -16,9 +16,9 @@ const Carousel = ({ data }) => {
 
   return (
     <Wrapper>
-      <List>
+      <List activeIndex={activeIndex}>
         {data.map((image, index) => (
-          <Item>
+          <Item key={image}>
             <Image src={image} active={index === activeIndex} />
           </Item>
         ))}
@@ -30,20 +30,25 @@ const Carousel = ({ data }) => {
 };
 
 const Wrapper = styled.div`
+  position: relative;
   width: 400px;
   height: 400px;
-  position: relative;
+  overflow: hidden;
 `;
-const List = styled.ul``;
+const List = styled.ul`
+  display: flex;
+  transform: ${({ activeIndex }) => `translateX(-${activeIndex * 400}px)`};
+  transition: transform 0.5s ease-out;
+`;
 const Item = styled.li``;
 const Image = styled.img`
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: ${({ active }) => !active && 0};
-  transition: opacity 0.5s ease-in;
+  left: 0; */
+  width: 400px;
+  height: 400px;
+  /* opacity: ${({ active }) => !active && 0};
+  transition: opacity 0.5s ease-in; */
 `;
 
 const Btn = styled.button`
