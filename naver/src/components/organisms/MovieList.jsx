@@ -1,17 +1,14 @@
 import styled from "styled-components";
-const MovieList = () => {
+const MovieList = ({ data }) => {
   return (
     <List>
-      <Item>
-        <Image src="https://upload.wikimedia.org/wikipedia/ko/f/f2/%EC%96%B4%EB%B2%A4%EC%A0%B8%EC%8A%A4-_%EC%97%94%EB%93%9C%EA%B2%8C%EC%9E%84_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg" />
-        <Title>어벤져스</Title>
-        <PubDate>2020</PubDate> / <UserRating>4.5</UserRating>
-      </Item>
-      <Item>
-        <Image src="https://upload.wikimedia.org/wikipedia/ko/f/f2/%EC%96%B4%EB%B2%A4%EC%A0%B8%EC%8A%A4-_%EC%97%94%EB%93%9C%EA%B2%8C%EC%9E%84_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg" />
-        <Title>어벤져스</Title>
-        <PubDate>2020</PubDate> / <UserRating>4.5</UserRating>
-      </Item>
+      {data.map(({ image, title, pubDate, userRating }) => (
+        <Item>
+          <Image src={image} />
+          <Title>{title}</Title>
+          <PubDate>{pubDate}</PubDate> / <UserRating>{userRating}</UserRating>
+        </Item>
+      ))}
     </List>
   );
 };
