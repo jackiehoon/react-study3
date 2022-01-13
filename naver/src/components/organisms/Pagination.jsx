@@ -1,12 +1,32 @@
 import styled from "styled-components";
 
-const Pagination = ({ onPageChange }) => {
+const Pagination = ({ nowPage, total, onPageChange }) => {
+  const lastPage = Math.ceil(total / 10);
+  const startPage = Math.ceil(nowPage / 10) * 10 - 9;
+  const endPage = startPage + 9 > lastPage ? lastPage : startPage + 9;
+
+  const pageList = [];
+  for (let i = startPage; i <= endPage; i++) {
+    pageList.push(i);
+  }
+
   return (
     <List>
-      <Item onClick={() => onPageChange(1)}>1</Item>
-      <Item onClick={() => onPageChange(2)}>2</Item>
-      <Item onClick={() => onPageChange(3)}>3</Item>
-      <Item onClick={() => onPageChange(4)}>4</Item>
+      {nowPage > 1 && (
+        <Item onClick={() => onPageChange(nowPage - 1)}>{"<"}</Item>
+      )}
+      {pageList.map((page) => (
+        <Item
+          onClick={() => onPageChange(page)}
+          key={page}
+          isActive={page === nowPage}
+        >
+          {page}
+        </Item>
+      ))}
+      {nowPage < lastPage && (
+        <Item onClick={() => onPageChange(nowPage + 1)}>{">"}</Item>
+      )}
     </List>
   );
 };
@@ -25,6 +45,10 @@ const Item = styled.li`
   border-radius: 50%;
   margin: 5px;
   cursor: pointer;
+
+  background: ${({ isActive }) => isActive && "#000"};
+  color: ${({ isActive }) => isActive && "#fff"};
+
   :hover {
     background: #000;
     color: #fff;

@@ -10,6 +10,7 @@ const Movie = () => {
   const [country, setCountry] = useState(countryList[0].code);
   const [text, setText] = useState("");
   const [query, setQuery] = useState("");
+  const [total, setTotal] = useState(0);
   const [movieList, setMovieList] = useState([]);
 
   useEffect(() => {
@@ -30,8 +31,9 @@ const Movie = () => {
     if (country !== "ALL") {
       params.country = country;
     }
-    const { items } = await getMovieList(params);
+    const { items, total } = await getMovieList(params);
     setMovieList(items);
+    setTotal(total);
   };
 
   return (
@@ -49,7 +51,11 @@ const Movie = () => {
         <BtnSubmit>검색</BtnSubmit>
       </Form>
       <MovieList data={movieList} />
-      <Pagination onPageChange={(page) => setPage(page)} />
+      <Pagination
+        nowPage={page}
+        total={total}
+        onPageChange={(page) => setPage(page)}
+      />
     </div>
   );
 };

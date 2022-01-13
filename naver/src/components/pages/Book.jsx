@@ -1,19 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InputText, Form, BtnSubmit } from "../atoms";
-import { BookList } from "../organisms";
+import { BookList, Pagination } from "../organisms";
 import { getBookList } from "../../apis/book";
 
 const Book = () => {
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
   const [text, setText] = useState("");
+  const [query, setQuery] = useState("");
   const [bookList, setBookList] = useState([]);
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    searchBook();
+  }, [page, query]);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const params = {
-      query: text,
-    };
-    const { items } = await getBookList(params);
+    setPage(1);
+    setQuery(text);
+  };
+
+  const searchBook = async () => {
+    const start = page * 10 - 9;
+    const params = { query, start };
+    const { items, total } = await getBookList(params);
     setBookList(items);
+    setTotal(total);
   };
 
   return (
@@ -24,6 +36,11 @@ const Book = () => {
         <BtnSubmit>검색</BtnSubmit>
       </Form>
       <BookList data={bookList} />
+      <Pagination
+        nowPage={page}
+        total={total}
+        onPageChange={(page) => setPage(page)}
+      />
     </div>
   );
 };
