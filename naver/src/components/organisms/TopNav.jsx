@@ -1,19 +1,37 @@
-import { Link } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+const linkList = [
+  {
+    link: "/",
+    name: "메인",
+  },
+  {
+    link: "/movie",
+    name: "영화",
+  },
+  {
+    link: "/book",
+    name: "책",
+  },
+];
+
 const TopNav = () => {
+  const { pathname } = useLocation();
+
+  if (pathname === "/") {
+    // 메인페이지에서는 nav 안보임
+    return <></>;
+  }
+
   return (
     <Container>
       <Nav>
-        <Link to="/">
-          <LinkItem>메인</LinkItem>
-        </Link>
-        <Link to="/movie">
-          <LinkItem>영화</LinkItem>
-        </Link>
-        <Link to="/book">
-          <LinkItem>책</LinkItem>
-        </Link>
+        {linkList.map(({ link, name }) => (
+          <CutomLink to={link} key={link}>
+            <LinkItem>{name}</LinkItem>
+          </CutomLink>
+        ))}
       </Nav>
     </Container>
   );
@@ -34,6 +52,12 @@ const Nav = styled.nav`
 const LinkItem = styled.div`
   margin: 0 10px;
   padding: 10px;
+`;
+const CutomLink = styled(NavLink)`
+  &.active {
+    background: #000;
+    color: #fff;
+  }
 `;
 
 export default TopNav;
