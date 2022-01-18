@@ -19,10 +19,7 @@ const BookDetail = () => {
   const { isbn } = useParams();
 
   const searchBookDetail = useCallback(async () => {
-    const params = {
-      d_isbn: isbn,
-    };
-    const { items } = await getBookDetail(params);
+    const { items } = await getBookDetail(isbn);
     setBook(items[0]);
   }, [isbn]);
 
