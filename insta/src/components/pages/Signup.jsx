@@ -20,7 +20,7 @@ const Signup = () => {
     setUserInfo({ ...userInfo, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { password, passwordConfirm } = userInfo;
 
@@ -28,7 +28,13 @@ const Signup = () => {
     if (password !== passwordConfirm)
       return alert("비밀번호를 정확히 입력하세요");
 
-    addUser(userInfo);
+    const result = await addUser(userInfo);
+    console.log(result);
+    if (result.success) {
+      // 회원가입 성공
+    } else {
+      // 실패
+    }
   };
 
   return (
