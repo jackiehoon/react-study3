@@ -2,9 +2,18 @@ import { instance } from ".";
 
 export const addUser = async (params) => {
   try {
-    const result = await instance.post("/users", params);
-    return result.data;
-  } catch (error) {
-    return error.response.data;
+    const { data } = await instance.post("/users", params);
+    return data;
+  } catch ({ response }) {
+    return response.data;
+  }
+};
+
+export const getToken = async (params) => {
+  try {
+    const { data } = await instance.post("/users/token", params);
+    return data;
+  } catch ({ response }) {
+    return response.data;
   }
 };

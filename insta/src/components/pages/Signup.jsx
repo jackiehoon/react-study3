@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addUser } from "../../apis/user";
 import {
   PageWrapper,
@@ -13,6 +13,7 @@ import {
 } from "../atoms/login";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({});
 
   const handleChange = (e) => {
@@ -28,12 +29,15 @@ const Signup = () => {
     if (password !== passwordConfirm)
       return alert("비밀번호를 정확히 입력하세요");
 
-    const result = await addUser(userInfo);
-    console.log(result);
-    if (result.success) {
-      // 회원가입 성공
+    const { success } = await addUser(userInfo);
+
+    if (success) {
+      // 회원가입 성공,
+      alert("회원가입 성공");
+      navigate("/login");
     } else {
       // 실패
+      alert("중복된 아이디 입니다.");
     }
   };
 
