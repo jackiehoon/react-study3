@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Link, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 
 import {
   PageWrapper,
@@ -13,8 +13,12 @@ import {
   SignupWrapper,
 } from "../atoms/login";
 import { getToken } from "../../apis/user";
+import { instance } from "../../apis";
+import UserContext from "../../contexts/user";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { setIsLogin } = useContext(UserContext);
   const [loginInfo, setLoginInfo] = useState({});
 
   const handleChange = (e) => {
@@ -30,6 +34,12 @@ const Login = () => {
       // 1. localStorage에 token 저장
       // 2. axios instance의 header 에 token 입력
       // 3. useContext isLogin을 true로.
+      // 4. 메인페이지로 이동
+
+      localStorage.token = token;
+      instance.defaults.headers.common["Authorization"] = token;
+      setIsLogin(true);
+      navigate("/");
     } else {
       alert("로그인 실패");
     }
