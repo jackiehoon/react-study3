@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
 
@@ -9,8 +9,19 @@ import {
   IconExplore,
   IconActivity,
 } from "../../assets/images/icons";
+import { ModalAddPost } from "./modals";
 
 const TopNav = () => {
+  // 1. useState이용해서 평소에는 <ModalAddPost /> 안나옴
+  // 2. <IconNewPost /> 누르면 <ModalAddPost />나오게
+  // 3. <ModalAddPost />의 <Backdrop /> 누르면 <ModalAddPost />꺼지게
+
+  const [showModalAddPost, setShowModalAddPost] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = showModalAddPost ? "hidden" : "";
+  }, [showModalAddPost]);
+
   return (
     <>
       <Header>
@@ -29,7 +40,7 @@ const TopNav = () => {
               <IconDirect />
             </IconWrapper>
             <IconWrapper>
-              <IconNewPost />
+              <IconNewPost onClick={() => setShowModalAddPost(true)} />
             </IconWrapper>
             <IconWrapper>
               <IconExplore />
@@ -41,11 +52,21 @@ const TopNav = () => {
           </Nav>
         </Main>
       </Header>
-      <Outlet />
+      <OutletWrapper>
+        <Outlet />
+      </OutletWrapper>
+      {showModalAddPost && (
+        <ModalAddPost onClose={() => setShowModalAddPost(false)} />
+      )}
     </>
   );
 };
 
+const OutletWrapper = styled.div`
+  padding-top: 70px;
+  background: #fafafa;
+  min-height: 100vh;
+`;
 const Header = styled.header`
   background: #fff;
   position: fixed;
