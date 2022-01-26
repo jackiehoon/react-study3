@@ -3,5 +3,13 @@ import { ReactComponent as IconDirect } from "./IconDirect.svg";
 import { ReactComponent as IconNewPost } from "./IconNewPost.svg";
 import { ReactComponent as IconExplore } from "./IconExplore.svg";
 import { ReactComponent as IconActivity } from "./IconActivity.svg";
+import { ReactComponent as IconPost } from "./IconPost.svg";
 
-export { IconHome, IconDirect, IconNewPost, IconExplore, IconActivity };
+export {
+  IconHome,
+  IconDirect,
+  IconNewPost,
+  IconExplore,
+  IconActivity,
+  IconPost,
+};

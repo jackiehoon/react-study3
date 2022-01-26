@@ -10,7 +10,6 @@ export const addUser = async (params) => {
 };
 
 export const getToken = async (params) => {
-  console.log(params);
   try {
     const { data } = await instance.post("/users/token", params);
     return data;

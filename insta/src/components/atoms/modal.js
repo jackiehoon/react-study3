@@ -17,5 +17,5 @@ export const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
   background: #000;
-  opacity: 0.7;
+  opacity: 0.85;
 `;
